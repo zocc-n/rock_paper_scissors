@@ -17,10 +17,13 @@ function getComputerChoice(){
 
 function getPlayerChoice(){
     let playerChoice = prompt('Rock, paper or scissors?').toLowerCase();
-    if(playerChoice != 'rock' || playerChoice != 'paper' || playerChoice != 'scissors'){
+    if(playerChoice == 'rock' || playerChoice == 'paper' || playerChoice == 'scissors'){
+        console.log(playerChoice);
+        return playerChoice;    
+    }else{
         console.log('Invalid input.')
         getPlayerChoice();
-    }else{
-        return playerChoice;
     }
 }
+
+getPlayerChoice();
