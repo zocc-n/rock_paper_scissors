@@ -2,16 +2,25 @@ function getComputerChoice(){
     let randNum = Math.random();
     let computerChoice;
     if(randNum >= 0.6666){
-       computerChoice = 'Rock';
+       computerChoice = 'rock';
     }
     else if(randNum < 0.6666 || randNum >= 0.3333){
-        computerChoice = 'Paper';
+        computerChoice = 'paper';
     }
     else{
-        computerChoice = 'Scissors'
+        computerChoice = 'scissors'
     }
     console.log(randNum);
     return computerChoice;
 }
 
-console.log(getComputerChoice());
+
+function getPlayerChoice(){
+    let playerChoice = prompt('Rock, paper or scissors?').toLowerCase();
+    if(playerChoice != 'rock' || playerChoice != 'paper' || playerChoice != 'scissors'){
+        console.log('Invalid input.')
+        getPlayerChoice();
+    }else{
+        return playerChoice;
+    }
+}
