@@ -1,5 +1,7 @@
 let playerSelection;
 let computerChoice;
+let playerScore = 0;
+let computerScore = 0;
 
 function getComputerChoice(){
     let randNum = Math.random();
@@ -43,14 +45,52 @@ function playScissors(){
 
 function playRound(computerSelection, playerSelection){
     if(computerSelection == playerSelection){
-        console.log('Draw');
+        document.querySelector('#roundStatus').innerText = 'Draw';
     }
     else if((computerSelection == 'rock' && playerSelection == 'scissors') || 
     (computerSelection == 'paper' && playerSelection == 'rock') ||
     (computerSelection == 'scissors' && playerSelection == 'paper')){
-        console.log('You lose');
+        document.querySelector('#roundStatus').innerText = 'You lose';
+        computerScore++;
     }
     else{
-        console.log('You win');
+        document.querySelector('#roundStatus').innerText = 'You win';
+        playerScore++;
     }
+
+    updateScore();
+    checkForWinner();
+}
+
+function updateScore(){
+    document.querySelector('#playerScore').innerText = playerScore;
+    document.querySelector('#computerScore').innerText = computerScore;
+}
+
+function checkForWinner(){
+    if(computerScore == 5 || playerScore == 5){
+        if(computerScore > playerScore){
+            document.querySelector('#result').innerText = 'GAME OVER! YOU LOST!';
+        } else{
+            document.querySelector('#result').innerText = 'CONGRATULATIONS! YOU WON!';
+        }
+        document.querySelector('#rock').setAttribute('disabled', 'disabled');
+        document.querySelector('#paper').setAttribute('disabled', 'disabled');
+        document.querySelector('#scissors').setAttribute('disabled', 'disabled');
+
+        document.querySelector('#playAgain').style.display = 'block';
+    }
+}
+
+document.querySelector('#playAgain').addEventListener('click', startNewGame);
+
+function startNewGame(){
+    document.querySelector('#playAgain').style.display = 'none';
+    document.querySelector('#rock').disabled = false;
+    document.querySelector('#paper').disabled = false;
+    document.querySelector('#scissors').disabled = false;
+    computerScore = 0;
+    playerScore = 0;
+    document.querySelector('#result').innerText = '';
+    document.querySelector('#roundStatus').innerText = '';
 }
