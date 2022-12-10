@@ -1,3 +1,6 @@
+let playerSelection;
+let computerChoice;
+
 function getComputerChoice(){
     let randNum = Math.random();
     let computerChoice;
@@ -15,16 +18,26 @@ function getComputerChoice(){
     return computerChoice;
 }
 
+document.querySelector('#rock').addEventListener('click', playRock);
+document.querySelector('#paper').addEventListener('click', playPaper);
+document.querySelector('#scissors').addEventListener('click', playScissors);
 
-function getPlayerChoice(){
-    let playerChoice = prompt('Rock, paper or scissors?').toLowerCase();
-    if(playerChoice == 'rock' || playerChoice == 'paper' || playerChoice == 'scissors'){
-        console.log('Plyer choice: ' + playerChoice);
-        return playerChoice;    
-    }else{
-        console.log('Invalid input.');
-        getPlayerChoice();
-    }
+function playRock(){
+    playerSelection = 'rock';
+    computerSelection = getComputerChoice();
+    playRound(computerSelection, playerSelection);
+}
+
+function playPaper(){
+    playerSelection = 'paper';
+    computerSelection = getComputerChoice();
+    playRound(computerSelection, playerSelection);
+}
+
+function playScissors(){
+    playerSelection = 'scissors';
+    computerSelection = getComputerChoice();
+    playRound(computerSelection, playerSelection);
 }
 
 
@@ -41,13 +54,3 @@ function playRound(computerSelection, playerSelection){
         console.log('You win');
     }
 }
-
-
-function game(){
-    playerSelection = getPlayerChoice();
-    computerSelection = getComputerChoice();
-    playRound(computerSelection, playerSelection);
-}
-
-
-game();
